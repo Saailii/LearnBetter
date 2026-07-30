@@ -22,33 +22,54 @@ export default function Layout({ children }: { children: ReactElement<Data.Share
       <header className="topbar">
         <div className="topbar-inner">
           <Link href="/" className="brand" aria-label="Accueil LearnBetter">
-            <span className="brand-mark">L</span>
-            <span>LearnBetter</span>
+            <span className="brand-mark" aria-hidden="true">
+              <i />
+              <i />
+            </span>
+            <span className="brand-name">LearnBetter</span>
           </Link>
 
           <nav className="desktop-nav" aria-label="Navigation principale">
             {user ? (
               <>
-                <Link href="/dashboard" className={url.startsWith('/dashboard') ? 'active' : ''}>
+                <Link
+                  href="/dashboard"
+                  className={url.startsWith('/dashboard') ? 'active' : ''}
+                  aria-current={url.startsWith('/dashboard') ? 'page' : undefined}
+                >
                   Aujourd’hui
                 </Link>
-                <Link href="/imports/course" className={url.startsWith('/imports') ? 'active' : ''}>
+                <Link
+                  href="/imports/course"
+                  className={url.startsWith('/imports') ? 'active' : ''}
+                  aria-current={url.startsWith('/imports') ? 'page' : undefined}
+                >
                   Importer
                 </Link>
-                <Link href="/review" className={url.startsWith('/review') ? 'active' : ''}>
+                <Link
+                  href="/review"
+                  className={url.startsWith('/review') ? 'active' : ''}
+                  aria-current={url.startsWith('/review') ? 'page' : undefined}
+                >
                   Réviser
                 </Link>
-                <Link href="/settings" className={url.startsWith('/settings') ? 'active' : ''}>
+                <Link
+                  href="/settings"
+                  className={url.startsWith('/settings') ? 'active' : ''}
+                  aria-current={url.startsWith('/settings') ? 'page' : undefined}
+                >
                   Réglages
                 </Link>
-                <span className="avatar" title={user.fullName ?? user.email}>
-                  {user.initials}
-                </span>
-                <Form action="/logout" method="post">
-                  <button type="submit" className="button-ghost compact">
-                    Déconnexion
-                  </button>
-                </Form>
+                <div className="account-menu">
+                  <span className="avatar" title={user.fullName ?? user.email}>
+                    {user.initials}
+                  </span>
+                  <Form action="/logout" method="post">
+                    <button type="submit" className="button-ghost compact">
+                      Déconnexion
+                    </button>
+                  </Form>
+                </div>
               </>
             ) : (
               <>
@@ -66,20 +87,44 @@ export default function Layout({ children }: { children: ReactElement<Data.Share
 
       {user && (
         <nav className="mobile-nav" aria-label="Navigation mobile">
-          <Link href="/dashboard" className={url.startsWith('/dashboard') ? 'active' : ''}>
-            <span aria-hidden="true">◉</span>
+          <Link
+            href="/dashboard"
+            className={url.startsWith('/dashboard') ? 'active' : ''}
+            aria-current={url.startsWith('/dashboard') ? 'page' : undefined}
+          >
+            <span aria-hidden="true" className="mobile-nav-icon">
+              ●
+            </span>
             Aujourd’hui
           </Link>
-          <Link href="/imports/course" className={url.startsWith('/imports') ? 'active' : ''}>
-            <span aria-hidden="true">＋</span>
+          <Link
+            href="/imports/course"
+            className={url.startsWith('/imports') ? 'active' : ''}
+            aria-current={url.startsWith('/imports') ? 'page' : undefined}
+          >
+            <span aria-hidden="true" className="mobile-nav-icon">
+              +
+            </span>
             Importer
           </Link>
-          <Link href="/review" className={url.startsWith('/review') ? 'active' : ''}>
-            <span aria-hidden="true">↻</span>
+          <Link
+            href="/review"
+            className={url.startsWith('/review') ? 'active' : ''}
+            aria-current={url.startsWith('/review') ? 'page' : undefined}
+          >
+            <span aria-hidden="true" className="mobile-nav-icon">
+              ↻
+            </span>
             Réviser
           </Link>
-          <Link href="/settings" className={url.startsWith('/settings') ? 'active' : ''}>
-            <span aria-hidden="true">⚙</span>
+          <Link
+            href="/settings"
+            className={url.startsWith('/settings') ? 'active' : ''}
+            aria-current={url.startsWith('/settings') ? 'page' : undefined}
+          >
+            <span aria-hidden="true" className="mobile-nav-icon">
+              ◌
+            </span>
             Réglages
           </Link>
         </nav>

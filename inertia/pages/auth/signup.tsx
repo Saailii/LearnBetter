@@ -1,14 +1,24 @@
-import { Form } from '@adonisjs/inertia/react'
+import { Form, Link } from '@adonisjs/inertia/react'
 
 export default function Signup() {
   return (
-    <div className="form-container">
-      <div>
-        <h1>Créer ton espace</h1>
-        <p>Quelques informations suffisent pour commencer.</p>
-      </div>
+    <div className="auth-shell">
+      <aside className="auth-aside">
+        <span className="eyebrow">Un rythme à toi</span>
+        <blockquote>Apprends avec intention, reviens au bon moment.</blockquote>
+        <ul>
+          <li>Un programme adapté à ton temps</li>
+          <li>Des révisions guidées par ta mémoire</li>
+          <li>Tes contenus, toujours sous ton contrôle</li>
+        </ul>
+      </aside>
 
-      <div>
+      <div className="form-container">
+        <div className="form-heading-block">
+          <span className="section-kicker">Première étape</span>
+          <h1>Créer ton espace.</h1>
+          <p>Quelques informations suffisent pour commencer.</p>
+        </div>
         <Form route="new_account.store">
           {({ errors }) => (
             <>
@@ -60,13 +70,17 @@ export default function Signup() {
               </div>
 
               <div>
-                <button type="submit" className="button">
+                <button type="submit" className="button-primary">
                   Créer mon espace
+                  <span aria-hidden="true">→</span>
                 </button>
               </div>
             </>
           )}
         </Form>
+        <p className="auth-switch">
+          Déjà un compte ? <Link href="/login">Se connecter</Link>
+        </p>
       </div>
     </div>
   )

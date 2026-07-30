@@ -5,15 +5,17 @@ export default function CourseImport() {
   return (
     <div className="import-page">
       <section className="import-intro">
-        <div className="eyebrow">Nouveau brouillon</div>
+        <div className="eyebrow">Ajouter à ta bibliothèque</div>
         <h1>Importer un cours</h1>
         <p>
-          Colle ici le JSON produit par ton projet ChatGPT LearnBetter. Le contenu sera vérifié
-          avant d’être enregistré comme brouillon.
+          Colle le contenu préparé par ton projet ChatGPT LearnBetter. Nous le vérifions avant de
+          créer un brouillon que tu gardes entièrement sous contrôle.
         </p>
 
         <div className="guardrail">
-          <span aria-hidden="true">✦</span>
+          <span className="guardrail-icon" aria-hidden="true">
+            ✓
+          </span>
           <div>
             <strong>Les cartes restent les tiennes</strong>
             <p>
@@ -22,14 +24,45 @@ export default function CourseImport() {
             </p>
           </div>
         </div>
+
+        <ol className="import-steps">
+          <li className="active">
+            <span>1</span>
+            <div>
+              <strong>Coller</strong>
+              <small>le fichier structuré</small>
+            </div>
+          </li>
+          <li>
+            <span>2</span>
+            <div>
+              <strong>Vérifier</strong>
+              <small>notions et sources</small>
+            </div>
+          </li>
+          <li>
+            <span>3</span>
+            <div>
+              <strong>Activer</strong>
+              <small>quand tout est juste</small>
+            </div>
+          </li>
+        </ol>
       </section>
 
       <section className="panel import-panel">
+        <div className="import-panel-heading">
+          <div>
+            <span className="section-kicker">Étape 1 sur 3</span>
+            <h2>Contenu du cours</h2>
+          </div>
+          <span className="format-pill">JSON · v1</span>
+        </div>
         <Form action="/imports/course" method="post">
           {({ processing }) => (
             <>
               <div>
-                <label htmlFor="payload">Contenu JSON</label>
+                <label htmlFor="payload">Colle le contenu JSON ici</label>
                 <textarea
                   id="payload"
                   name="payload"
@@ -47,7 +80,8 @@ export default function CourseImport() {
 
               <div className="form-actions">
                 <button type="submit" className="button-primary" disabled={processing}>
-                  {processing ? 'Vérification…' : 'Vérifier et créer le brouillon'}
+                  {processing ? 'Vérification…' : 'Vérifier le contenu'}
+                  {!processing && <span aria-hidden="true">→</span>}
                 </button>
               </div>
             </>

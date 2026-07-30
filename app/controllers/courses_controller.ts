@@ -58,7 +58,17 @@ export default class CoursesController {
         : await db
             .from('self_tests')
             .whereIn('concept_id', conceptIds)
-            .select('id', 'concept_id as conceptId', 'type', 'prompt', 'difficulty', 'position')
+            .select(
+              'id',
+              'concept_id as conceptId',
+              'type',
+              'prompt',
+              'options_json as optionsJson',
+              'expected_answer_json as expectedAnswerJson',
+              'explanation',
+              'difficulty',
+              'position'
+            )
             .orderBy('position')
 
     const cards =
@@ -78,6 +88,7 @@ export default class CoursesController {
               'flashcards.due_at as dueAt',
               'flashcards.repetitions',
               'course_sources.id as sourceId',
+              'course_sources.type as sourceType',
               'course_sources.title as sourceTitle',
               'course_sources.reference as sourceReference'
             )
