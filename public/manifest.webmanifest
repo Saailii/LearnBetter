@@ -1,0 +1,19 @@
+{
+  "name": "LearnBetter",
+  "short_name": "LearnBetter",
+  "description": "Cours, autotests et répétitions espacées dans un programme quotidien.",
+  "lang": "fr",
+  "start_url": "/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f5f8",
+  "theme_color": "#6857e5",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
